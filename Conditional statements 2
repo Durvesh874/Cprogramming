@@ -1,0 +1,31 @@
+#include<stdio.h>
+
+void main()
+{
+	long int m1, m2, m3, m4, m5, m6;
+	long int percent;
+
+	printf("Enter the marks for 6 subjects\n");
+	scanf("%ld %ld %ld %ld %ld %ld", &m1, &m2, &m3, &m4, &m5, &m6);
+	
+	percent = ((m1 + m2 + m3 + m4 + m5 + m6)*100/600);
+	printf("Percentage : %ld\n",percent);
+	
+	if(percent >= 90)
+		printf("S grade\n");
+		
+	else if(percent >= 80 && percent < 90)
+		printf("A grade\n");
+		
+	else if(percent >= 70 && percent < 80)
+		printf("B grade\n");
+		
+	else if(percent >= 60 && percent < 70)
+		printf("C grade\n");
+		
+	else if(percent >= 50 && percent < 80)
+		printf("D grade\n");
+		
+	else
+		printf("Fail\n");
+}
