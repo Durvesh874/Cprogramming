@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+
+// Define the structure Employee
+struct Employee 
+{
+    int empno;
+    char empname[50];
+    char department[50];
+    float salary;
+};
+
+// Function to display the contents of the employees
+void displayEmployees(struct Employee employees[], int count) 
+{
+    printf("EmpNo Name\t\tDepartment\tSalary\n");
+    for (int i = 0; i < count; i++) 
+{
+        printf("%-5d %-16s %-16s %.2f\n", employees[i].empno, employees[i].empname, employees[i].department, employees[i].salary);
+    }
+}
+
+int main() 
+{
+    // Define an array of 20 employees
+    struct Employee employees[20];
+
+    // Initialize the employee data (example data)
+    employees[0].empno = 1;
+    strcpy(employees[0].empname, "Chirag");
+    strcpy(employees[0].department, "IT");
+    employees[0].salary = 20000;
+
+    employees[1].empno = 2;
+    strcpy(employees[1].empname, "Arnav");
+    strcpy(employees[1].department, "HR");
+    employees[1].salary = 56000;
+
+    employees[2].empno = 3;
+    strcpy(employees[2].empname, "Shivam");
+    strcpy(employees[2].department, "Finance");
+    employees[2].salary = 30500;
+
+    // Add more employees as needed...
+
+    // Display the contents of the employees
+    displayEmployees(employees, 3); // Adjust the second parameter based on the actual number of employees initialized
+
+    return 0;
+}
