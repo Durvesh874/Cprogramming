@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main() 
+{
+    int matrix[3][3];
+    int *ptr = &matrix[0][0];
+    int sumDiagonal = 0;
+
+    // Insert elements into the array
+
+    printf("Input elements in the matrix :\n");
+    for (int i = 0; i < 3; i++)
+{
+        for (int j = 0; j < 3; j++) 
+{
+            printf("element - [%d],[%d] : ", i, j);
+            scanf("%d", (ptr + (i * 3) + j));
+}
+ }
+
+    // Print the matrix
+    printf("The matrix is :\n");
+    for (int i = 0; i < 3; i++) 
+{
+        for (int j = 0; j < 3; j++) 
+{
+            printf("%d ", *(ptr + (i * 3) + j));
+  }
+        printf("\n");
+  }
+
+    // Calculate the sum of diagonal elements
+    for (int i = 0; i < 3; i++)
+{
+        sumDiagonal += *(ptr + (i * 3) + i);        // Sum of the primary diagonal
+        sumDiagonal += *(ptr + (i * 3) + (2 - i));  // Sum of the secondary diagonal
+   }
+
+    // Since the middle element (for a 3x3 matrix) is counted twice, subtract it once
+    sumDiagonal -= matrix[1][1];
+
+    // Print the sum of diagonal elements
+    printf("The sum of all diagonal elements is: %d\n", sumDiagonal);
+
+    return 0;
+}
+
