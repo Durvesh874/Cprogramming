@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void reverseContent(char* inputFileName, char* outputFileName) 
+{
+    FILE *inputFile = fopen(inputFileName, "r");
+    FILE *outputFile = fopen(outputFileName, "w");
+
+    if (inputFile == NULL) 
+    {
+        fprintf(stderr, "Error: Could not open file %s for reading\n", inputFileName);
+        exit(1);
+    }
+
+    if (outputFile == NULL)
+    {
+        fprintf(stderr, "Error: Could not open file %s for writing\n", outputFileName);
+        fclose(inputFile);
+        exit(1);
+    }
+
+    // Move the file pointer to the end of the file
+    fseek(inputFile, 0, SEEK_END);
+    long fileSize = ftell(inputFile);
+
+    // Read and display the file content in reverse order
+    printf("Input to the reverse function: ");
+    fseek(inputFile, 0, SEEK_SET);
+    int ch;
+    while ((ch = fgetc(inputFile)) != EOF)
+    {
+        putchar(ch);
+    }
+
+    printf("\nOutput: ");
+    for (long i = fileSize - 1; i >= 0; i--) 
+    {
+        fseek(inputFile, i, SEEK_SET);
+        ch = fgetc(inputFile);
+        putchar(ch);
+        fputc(ch, outputFile);
+    }
+
+    printf("\n");
+
+    fclose(inputFile);
+    fclose(outputFile);
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc != 3)
+    {
+        fprintf(stderr, "Usage: %s <input file> <output file>\n", argv[0]);
+        return 1;
+    }
+
+    reverseContent(argv[1], argv[2]);
+
+    return 0;
+}
